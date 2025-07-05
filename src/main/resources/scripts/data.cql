@@ -1,15 +1,7 @@
 -- Create a keyspace
-CREATE KEYSPACE IF NOT EXISTS logs WITH REPLICATION = { 'class' : 'SimpleStrategy', 'replication_factor' : '1' };
+CREATE KEYSPACE IF NOT EXISTS logs WITH REPLICATION = { 'class' : 'NetworkTopologyStrategy', 'replication_factor' : '3' };
 
 -- Create a table
-CREATE TABLE IF NOT EXISTS logs.user_activity (
-id UUID PRIMARY KEY,
-user_id UUID,
-activity_id UUID,
-activity_type text,
-timestamp timestamp
-);
-
 CREATE TABLE IF NOT EXISTS logs.user_activity (
 id UUID,
 user_id UUID,

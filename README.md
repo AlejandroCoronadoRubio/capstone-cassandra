@@ -16,7 +16,28 @@ If you want to debug use the next line instead and attach a debugger using a Rem
     
     Maven 3.8.1
 
-# Apache cassandra docker
+# Apache cassandra docker with 3 nodes cluster
+
+Command to run docker compose
+
+    docker compose up -d
+
+**Note: This actions takes about 10 minutes to finish**
+
+Command to load cql file
+
+    docker run --rm -v "$(pwd)/src/main/resources/scripts/data.cql:/scripts/data.cql" --network container:cassandra-1 nuvo/docker-cqlsh cqlsh 127.0.0.1 9042 --cqlversion=3.4.6 -f /scripts/data.cql
+
+Commands to connect csqlh:
+
+    docker exec -it cassandra-1 cqlsh
+    docker exec -it cassandra-2 cqlsh
+    docker exec -it cassandra-3 cqlsh
+
+# Clean Up
+    docker compose down -v
+
+# Apache cassandra docker (only one container)
 
 Steps to run apache cassandra on docker (it takes some minutes to cassandra server to start up):
 
